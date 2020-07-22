@@ -1,0 +1,364 @@
+﻿@model CarInsurance.Models.Insuree
+
+@{
+    //Message Containers
+    string me = "m";
+    int Operation = 50, beforeFinal=0, beforeFinal2=0, finalOne = 0, finalTwo = 0, finalSum=0, monthlyTotal=0;
+    int speedingTotal = Model.SpeedingTickets * 10;
+
+    //Age
+    var DOB = Model.DateOfBirth.Year;
+    int fix = DOB + DOB;
+    int thisYear = DateTime.Now.Year;
+    int age = fix - thisYear;
+    //Logic
+
+
+    if (Model.Quote > 0)
+    {
+      if (age > 1)
+      {
+        //Age
+        if (age <= 18)
+        {
+          Operation += 100;
+        }
+        if (Enumerable.Range(19, 25).Contains(age))
+        {
+          Operation += 50;
+        }
+        if (age >= 25)
+        {
+          Operation += 25;
+        }
+      }
+      if (Model.CarYear > 0)
+      {
+        //Car Year
+        if (Model.CarYear < 2000)
+        {
+          Operation += 25;
+        }
+        if (Model.CarYear > 2015)
+        {
+          Operation += 25;
+        }
+      }
+
+      if (Model.CarMake.Length > me.Length)
+      {
+        //Car Make
+        if (Model.CarMake == "Porsche")
+        {
+          Operation += 25;
+        }
+        if (Model.CarMake == "Porsche" && Model.CarModel == "911 Carrera")
+        {
+          Operation += 25;
+        }
+      }
+
+
+      //Speeders
+      if (Model.SpeedingTickets > 0)
+      {
+        Operation += Model.SpeedingTickets * 10;
+      }
+      //DUI
+      if (Model.DUI == true)
+      {
+        Operation += Operation / 4;
+        beforeFinal2 = Operation += Operation / 4;
+      }
+
+      //Coverage
+      if (Model.CoverageType == true)
+      {
+        Operation += Operation / 2;
+        finalOne = Operation / 2;
+        monthlyTotal = Operation;
+        finalSum = Operation * 12;
+
+      }
+      if (Model.CoverageType == false)
+      {
+        monthlyTotal = Operation;
+        finalOne = Operation;
+        finalSum = Operation * 12;
+
+
+      }
+    }
+    }
+
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width" />
+  <title>Admin</title>
+  <style>
+    .estmate {
+      color: red;
+    }
+  </style>
+</head>
+<body style="background-image: url('../../Content/img.jpg');>
+  <div class="container">
+    <div class="container">
+      <table class="table table-dark card-body shadow mx-auto" style="margin-top:50px;">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col">Current User: @Html.DisplayFor(model => model.FirstName)</th>
+            <th scope="col">Email: @Html.DisplayFor(model => model.EmailAddress) </th>
+          </tr>
+          <tr>
+            <th>#</th>
+            <th>Info</th>
+            <th>Logic</th>
+            <th class="estmate">Estimates</th>
+          </tr>
+          <tr>
+            <th scope="row">1</th>
+            <td>Age: @age </td>
+            <td>
+
+              @if (age > 1)
+              {
+                if (age <= 18)
+                {
+                  <p>Under 18 Fee</p>
+                }
+                if (Enumerable.Range(19, 25).Contains(age))
+                {
+                  <p>Between the Age Fee</p>
+                }
+                if (age >= 25)
+                {
+                  <p>25 & Over Fee</p>
+                }
+              }
+
+
+            </td>
+            <td class="estmate">
+              @if (age > 1)
+              {
+                if (age <= 18)
+                {
+                  <p>100</p>
+                }
+                if (Enumerable.Range(19, 25).Contains(age))
+                {
+                  <p>50</p>
+                }
+                if (age >= 25)
+                {
+                  <p>25</p>
+                }
+              }
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Car Year: @Html.DisplayFor(model => model.CarYear) </td>
+            <td>
+              @if (Model.CarYear > 0)
+              {
+                //Car Year
+                if (Model.CarYear < 2000)
+                {
+                  <p>Car Year Less Than 2000 Fee</p>
+                }
+                if (Model.CarYear > 2015)
+                {
+                  <p>Car Year Over 2015 Fee</p>
+                }
+              }
+            </td>
+            <td class="estmate">
+              @if (Model.CarYear > 0)
+              {
+                //Car Year
+                if (Model.CarYear < 2000)
+                {
+                  <p>25</p>
+                }
+                if (Model.CarYear > 2015)
+                {
+                  <p>25</p>
+                }
+              }
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Car Make: @Html.DisplayFor(model => model.CarMake) </td>
+            <td>
+
+              @if (Model.CarMake.Length > me.Length)
+              {
+                //Car Make
+                if (Model.CarMake == "Porsche")
+                {
+                  <p>Car Make Porsche Fee</p>
+                }
+                if (Model.CarMake == "Porsche" && Model.CarModel == "911 Carrera")
+                {
+                  <p>Car Make and Model Fee for Porche</p>
+                }
+                else
+                {
+                  <p>Their is no fee for you Car Make</p>
+                }
+              }
+
+            </td>
+            <td class="estmate">
+              @if (Model.CarMake.Length > me.Length)
+              {
+                //Car Make
+                if (Model.CarMake == "Porsche")
+                {
+                  <p>25</p>
+                }
+                if (Model.CarMake == "Porsche" && Model.CarModel == "911 Carrera")
+                {
+                  <p>25</p>
+                }
+                else
+                {
+                  <p>0</p>
+                }
+              }
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">4</th>
+            <td>Car Model: @Html.DisplayFor(model => model.CarModel) </td>
+            <td>
+              Only Applies to 811 Carrera
+            </td>
+            <td class="estmate">0</td>
+          </tr>
+          <tr>
+            <th scope="row">5</th>
+            <td>DUI: @Html.DisplayFor(model => model.DUI)</td>
+            <td>
+
+              @if (Model.DUI == true)
+              {
+                <p>Fee for having a DUI</p>
+              }
+              else
+              {
+                <p>No DUI No Fee</p>
+              }
+
+            </td>
+            <td class="estmate">
+              @if (Model.DUI == true)
+              {
+                <p>Fee for having a DUI</p>
+              }
+              else
+              {
+                <p>0</p>
+              }
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">6</th>
+            <td>Speeding Tickets: @Html.DisplayFor(model => model.SpeedingTickets)</td>
+            <td>
+              @if (Model.SpeedingTickets > 0)
+              {
+                <p>Fee for a Speeding Record</p>
+              }
+              else
+              {
+                <p>No Fees for Safe Driving</p>
+              }
+            </td>
+            <td class="estmate">
+              @if (Model.SpeedingTickets > 0)
+              {
+                @speedingTotal
+              }
+              else
+              {
+                <p>0</p>
+              }
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">7</th>
+            <td>Coverage: @Html.DisplayFor(model => model.CoverageType)</td>
+            <td>
+              @if (Model.CoverageType == true)
+              {
+                <p>Full Coverage Deal</p>
+              }
+              @if (Model.CoverageType == false)
+              {
+                <p>Partial Coverage Deal</p>
+
+              }
+            </td>
+            <td class="estmate">
+              @if (Model.CoverageType == true)
+              {
+                @finalOne
+              }
+              @if (Model.CoverageType == false)
+              {
+                <p>0</p>
+
+              }
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">8</th>
+            <td></td>
+            <td>Base Fee</td>
+            <td class="estmate">$50</td>
+          </tr>
+          <tr>
+            <th scope="row">9</th>
+            <td></td>
+            <td>Monthly Total</td>
+            <td class=""><p id="monthlyTotal" class="estmate">@monthlyTotal</p></td>
+          </tr>
+          <tr>
+            <th scope="row">10</th>
+            <td></td>
+            <td>Annual &amp; Final Total</td>
+            <td class=""><p id="finalTotal" class="estmate">@Model.Quote</p></td>
+          </tr>
+        </thead>
+
+
+      </table>
+    </div>
+  </div>
+  
+  <p class="text-center">
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+  </p>
+  @Scripts.Render("~/bundles/bootstrap")
+  @Scripts.Render("alert(age);")
+  <script type="text/javascript">
+
+    
+  if (1 == 1) { document.getElementById("finalTotal").innerHTML = "Hello World"; }
+
+  if (@age < 100) (document.getElementById("monthlyTotal").innerHTML = @age;)
+  </script>
+</body>
+</html>
+

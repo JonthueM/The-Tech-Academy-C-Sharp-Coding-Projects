@@ -1,0 +1,106 @@
+﻿@model IEnumerable<CarInsurance.Models.Insuree>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<body class=" container-fluid>
+  <div class="container-fluid ">
+
+    <p>
+      @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th>
+            @Html.Label("First Name")
+          </th>
+          <th>
+            @Html.Label("Last Name")
+          </th>
+          <th>
+            @Html.Label("Email Address")
+          </th>
+          <th>
+            @Html.Label("Date of Birth")
+          </th>
+          <th>
+            @Html.Label("Car Year")
+          </th>
+          <th>
+            @Html.Label("Car Make")
+          </th>
+          </th>
+          <th>
+            @Html.Label("Car Model")
+          </th>
+          <th>
+            @Html.Label("DUI")
+          </th>
+          <th>
+            @Html.Label("Speeding Tickets")
+          </th>
+          <th>
+            @Html.Label("Coverage Type")
+          </th>
+          <th>
+            @Html.Label("Quote")
+          </th>
+          <th></th>
+        </tr>
+
+      </thead>
+      @foreach (var item in Model)
+      {
+        <tr>
+          <td>
+            @Html.DisplayFor(modelItem => item.FirstName)
+          </td>
+          <td>
+            @Html.DisplayFor(modelItem => item.LastName)
+          </td>
+          <td>
+            @Html.DisplayFor(modelItem => item.EmailAddress)
+          </td>
+          <td>
+            @Html.DisplayFor(modelItem => item.DateOfBirth)
+          </td>
+          <td>
+            @Html.DisplayFor(modelItem => item.CarYear)
+          </td>
+          <td>
+            @Html.DisplayFor(modelItem => item.CarMake)
+          </td>
+          <td>
+            @Html.DisplayFor(modelItem => item.CarModel)
+          </td>
+          <td>
+            @Html.DisplayFor(modelItem => item.DUI)
+          </td>
+          <td>
+            @Html.DisplayFor(modelItem => item.SpeedingTickets)
+          </td>
+          <td>
+            @Html.DisplayFor(modelItem => item.CoverageType)
+          </td>
+          <td>
+            @Html.DisplayFor(modelItem => item.Quote)
+          </td>
+          <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id }) |
+            @Html.ActionLink("Break Down", "Admin", new { id = item.Id })
+          </td>
+        </tr>
+      }
+
+    </table>
+
+  </div>
+
+</body>
+
