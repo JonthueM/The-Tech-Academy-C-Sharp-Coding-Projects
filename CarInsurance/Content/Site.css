@@ -1,1 +1,43 @@
-﻿
+﻿.createContainter {
+    width: 700px !important;
+    margin: 5px auto;
+    border: 1px solid black;
+    padding: 40px 50px;
+    -webkit-box-shadow: -5px -1px 17px 5px rgba(0,0,0,0.75);
+    -moz-box-shadow: -5px -1px 17px 5px rgba(0,0,0,0.75);
+    box-shadow: -5px -1px 17px 5px rgba(0,0,0,0.75);
+    background-color: #343a40;
+    color: white;
+}
+body {
+    background-image: url('../../Content/buildings-1851246.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#submitShit {
+    background-color: red !important;
+    color: white;
+}
+.saveButton {
+    background-color: red !important;
+    color: white !important;
+}
+.whiteHeader{
+    color: white;
+}
+
+
+#createTable {
+    margin: 20px 10px;
+    width: 99%;
+}
+.redText a {
+    color: red !important;
+}
+
+label.control-label.col-md-2 {
+    /* margin: 0; */
+    padding-right: 0 !important;
+    padding-left: 0;
+}

@@ -4,15 +4,15 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2 class="whiteHeader text-center">Index</h2>
 
 <body class=" container-fluid>
   <div class="container-fluid ">
 
-    <p>
+    <p class="text-center redText">
       @Html.ActionLink("Create New", "Create")
     </p>
-    <table class="table">
+    <table id="createTable" class="table">
       <thead class="thead-dark">
         <tr>
           <th>
@@ -55,7 +55,7 @@
       </thead>
       @foreach (var item in Model)
       {
-        <tr>
+        <tr  class="bg-light">
           <td>
             @Html.DisplayFor(modelItem => item.FirstName)
           </td>

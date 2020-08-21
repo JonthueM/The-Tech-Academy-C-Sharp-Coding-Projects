@@ -11,7 +11,7 @@
 {
     @Html.AntiForgeryToken()
     
-    <div class="form-horizontal">
+    <div class="form-horizontal createContainter">
         <h4>Insuree</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -84,16 +84,16 @@
         </div>
 
         <div class="form-group">
-          @Html.Label("Speeding Tickets", htmlAttributes: new { @class = "control-label col-md-2" })
-          <div class="col-md-10">
+          @Html.Label("Speeding Tickets", htmlAttributes: new { @class = "control-label col-md-3" })
+          <div class="col-md-9">
             @Html.EditorFor(model => model.SpeedingTickets, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.SpeedingTickets, "", new { @class = "text-danger" })
           </div>
         </div>
 
         <div class="form-group">
-          @Html.Label("Coverage Type", htmlAttributes: new { @class = "control-label col-md-2" })
-          <div class="col-md-10">
+          @Html.Label("Coverage Type", htmlAttributes: new { @class = "control-label col-md-3" })
+          <div class="col-md-9">
             <div class="">
               @Html.Label("Full")
               @Html.RadioButton("CoverageType", true)
@@ -115,13 +115,13 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Save" class="btn saveButton btn-default" />
             </div>
         </div>
     </div>
 }
 
-<div>
+<div class="text-center">
     @Html.ActionLink("Back to List", "Index")
 </div>
 
