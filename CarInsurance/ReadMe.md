@@ -119,9 +119,10 @@ Creating the model using ADO. Entity Data Model and creating a script that use t
             return View(insuree);
         }
 ```
+Some visual preview.
 ![](insuranceApp.gif)
 
-And Using htmlHelper and Razor to render the HTML elements and display some calculations
+And Using htmlHelper and Razor to render the HTML elements and display some calculations.
 
 ```csharp
             <td class="estmate">
